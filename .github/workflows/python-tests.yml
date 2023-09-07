@@ -6,6 +6,10 @@ jobs:
   build:
     name: Build and Run Script
     runs-on: ubuntu-20.04
+    env:
+        model-url: https://huggingface.co/TheBloke/CodeLlama-7B-Python-GGML/resolve/main/codellama-7b-python.ggmlv3.Q2_K.bin
+        output-file: $RUNNER_TEMP/codellama-7b-python.ggmlv3.Q2_K.bin
+
     strategy:
       fail-fast: false
       matrix:
@@ -22,9 +26,9 @@ jobs:
 
       - name: Download File
         run: |
-          curl -o $RUNNER_TEMP/codellama-7b-python.ggmlv3.Q2_K.bin -L https://huggingface.co/TheBloke/CodeLlama-7B-Python-GGML/resolve/main/codellama-7b-python.ggmlv3.Q2_K.bin
+          curl -o $output-file -L $model-url
 
       - name: Run Script
         run: |
             pip3 install -r requirements.txt
-            python3 convert-llama-ggml-to-gguf.py --input $RUNNER_TEMP/codellama-7b-python.ggmlv3.Q2_K.bin --output ./ggml-model-f16.gguf
+            python3 convert-llama-ggml-to-gguf.py --input $output-file --output ./model.gguf
