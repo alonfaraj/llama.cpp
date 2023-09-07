@@ -1,0 +1,30 @@
+name: Python Workflow
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build and Run Script
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9, 3.10, 3.11, 3.12]
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Download File
+        run: |
+          curl -o $RUNNER_TEMP/codellama-7b-python.ggmlv3.Q2_K.bin https://huggingface.co/TheBloke/CodeLlama-7B-Python-GGML/blob/main/codellama-7b-python.ggmlv3.Q2_K.bin
+
+      - name: Run Script
+        run: |
+            python3 convert-llama-ggml-to-gguf.py --input $RUNNER_TEMP/codellama-7b-python.ggmlv3.Q2_K.bin --output ./ggml-model-f16.gguf
