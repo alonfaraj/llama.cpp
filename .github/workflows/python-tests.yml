@@ -22,7 +22,7 @@ jobs:
 
       - name: Download File
         run: |
-          curl -o $RUNNER_TEMP/codellama-7b-python.ggmlv3.Q2_K.bin https://huggingface.co/TheBloke/CodeLlama-7B-Python-GGML/resolve/main/codellama-7b-python.ggmlv3.Q2_K.bin
+          curl -o $RUNNER_TEMP/codellama-7b-python.ggmlv3.Q2_K.bin -L https://huggingface.co/TheBloke/CodeLlama-7B-Python-GGML/resolve/main/codellama-7b-python.ggmlv3.Q2_K.bin
 
       - name: Run Script
         run: |
