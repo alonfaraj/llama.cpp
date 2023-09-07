@@ -7,8 +7,8 @@ jobs:
     name: Build and Run Script
     runs-on: ubuntu-20.04
     env:
-        model-url: https://huggingface.co/TheBloke/CodeLlama-7B-Python-GGML/resolve/main/codellama-7b-python.ggmlv3.Q2_K.bin
-        output-file: $RUNNER_TEMP/codellama-7b-python.ggmlv3.Q2_K.bin
+        model_url: https://huggingface.co/TheBloke/CodeLlama-7B-Python-GGML/resolve/main/codellama-7b-python.ggmlv3.Q2_K.bin
+        output_file: $RUNNER_TEMP/codellama-7b-python.ggmlv3.Q2_K.bin
 
     strategy:
       fail-fast: false
@@ -26,9 +26,9 @@ jobs:
 
       - name: Download File
         run: |
-          curl -o $output-file -L $model-url
+          curl -o $output_file -L $model_url
 
       - name: Run Script
         run: |
             pip3 install -r requirements.txt
-            python3 convert-llama-ggml-to-gguf.py --input $output-file --output ./model.gguf
+            python3 convert-llama-ggml-to-gguf.py --input $output_file --output ./model.gguf
