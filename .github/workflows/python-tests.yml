@@ -22,9 +22,9 @@ jobs:
 
       - name: Download File
         run: |
-          curl -o $RUNNER_TEMP/codellama-7b-python.ggmlv3.Q2_K.bin https://huggingface.co/TheBloke/CodeLlama-7B-Python-GGML/blob/main/codellama-7b-python.ggmlv3.Q2_K.bin
+          curl -o $RUNNER_TEMP/codellama-7b-python.ggmlv3.Q2_K.bin https://huggingface.co/TheBloke/CodeLlama-7B-Python-GGML/resolve/main/codellama-7b-python.ggmlv3.Q2_K.bin
 
       - name: Run Script
         run: |
             pip3 install -r requirements.txt
-            python3 convert-llama-ggml-to-gguf.py --input $RUNNER_TEMP/codellama-7b-python.ggmlv3.Q2_K.bin --output ./ggml-model-f16.gguf --eps 1e-5
+            python3 convert-llama-ggml-to-gguf.py --input $RUNNER_TEMP/codellama-7b-python.ggmlv3.Q2_K.bin --output ./ggml-model-f16.gguf
