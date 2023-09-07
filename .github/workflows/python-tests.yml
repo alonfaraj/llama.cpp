@@ -26,4 +26,5 @@ jobs:
 
       - name: Run Script
         run: |
+            pip3 install -r requirements.txt
             python3 convert-llama-ggml-to-gguf.py --input $RUNNER_TEMP/codellama-7b-python.ggmlv3.Q2_K.bin --output ./ggml-model-f16.gguf
