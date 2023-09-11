@@ -38,7 +38,7 @@ jobs:
       - name: Build
         id: make_build
         run: |
-          make
+          make -j
 
       - name: Test
         id: make_test
