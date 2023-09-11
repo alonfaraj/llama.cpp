@@ -266,7 +266,8 @@ jobs:
           mkdir build
           cd build
           cmake .. ${{ matrix.defines }}
-          cmake --build . --config Release -j$env:NUMBER_OF_PROCESSORS
+          $cores = (Get-WmiObject -Class Win32_ComputerSystem).NumberOfLogicalProcessors
+          cmake --build . --config Release -j$cores
 
       - name: Add clblast.dll
         id: add_clblast_dll
@@ -355,7 +356,8 @@ jobs:
           mkdir build
           cd build
           cmake .. -DLLAMA_BUILD_SERVER=ON -DLLAMA_CUBLAS=ON
-          cmake --build . --config Release -j$env:NUMBER_OF_PROCESSORS
+          $cores = (Get-WmiObject -Class Win32_ComputerSystem).NumberOfLogicalProcessors
+          cmake --build . --config Release -j$cores
 
       - name: Determine tag name
         id: tag
