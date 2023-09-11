@@ -189,7 +189,7 @@ jobs:
           mkdir build
           cd build
           cmake -DLLAMA_AVX2=OFF -DLLAMA_FMA=OFF ..
-          cmake --build . --config Release sysctl -j$(sysctl -n hw.ncpu)
+          cmake --build . --config Release -j$(sysctl -n hw.ncpu)
 
       - name: Test
         id: cmake_test
