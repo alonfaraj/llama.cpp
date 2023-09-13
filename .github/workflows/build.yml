@@ -492,7 +492,8 @@ jobs:
           run: Get-ChildItem -Path w64devkit/w64devkit/w64devkit
         - name: run
           run: Start-Process -FilePath w64devkit/w64devkit/w64devkit/w64devkit.exe
-
+        - name: build
+          run: make
 
   release:
     if: ${{ ( github.event_name == 'push' && github.ref == 'refs/heads/master' ) || github.event.inputs.create_release == 'true' }}
