@@ -491,9 +491,8 @@ jobs:
         - name: List Extracted Files
           run: Get-ChildItem -Path w64devkit/w64devkit/w64devkit
         - name: run
-          run: |
-                Start-Process -FilePath w64devkit/w64devkit/w64devkit/w64devkit.exe
-                make
+          run: .\w64devkit\w64devkit\w64devkit\w64devkit.exe `| make
+
 
   release:
     if: ${{ ( github.event_name == 'push' && github.ref == 'refs/heads/master' ) || github.event.inputs.create_release == 'true' }}
