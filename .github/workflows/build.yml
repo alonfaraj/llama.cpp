@@ -469,6 +469,31 @@ jobs:
           path: |
             cudart-llama-bin-win-cu${{ matrix.cuda }}-x64.zip
 
+  windows-devkit:
+
+    runs-on: windows-latest
+
+    steps:
+        - name: Clone
+          id: checkout
+          uses: actions/checkout@v1
+
+        - name: Download devkit
+
+          uses: dsaltares/fetch-gh-release-asset@master
+          with:
+            repo: 'skeeto/w64devkit'
+            # version: 'tags/v0.1.18'
+            file: 'w64devkit-fortran-1.20.0.zip'
+            path: $env:RUNNER_TEMP
+        - name: Extract Any ZIP File
+          run: Expand-Archive -Path *.zip -DestinationPath $env:RUNNER_TEMP\w64devkit
+        - name: List Extracted Files
+          run: Get-ChildItem -Path $env:RUNNER_TEMP\w64devkit
+        - name: run
+          run: Start-Process -FilePath $env:RUNNER_TEMP\w64devkit\w64devkit\w64devkit.exe -Wait
+
+
   release:
     if: ${{ ( github.event_name == 'push' && github.ref == 'refs/heads/master' ) || github.event.inputs.create_release == 'true' }}
 
