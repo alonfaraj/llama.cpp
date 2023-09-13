@@ -485,13 +485,13 @@ jobs:
             repo: 'skeeto/w64devkit'
             # version: 'tags/v0.1.18'
             file: 'w64devkit-fortran-1.20.0.zip'
-            target: $env:RUNNER_TEMP/w64devkit.zip
+            target: w64devkit/w64devkit.zip
         - name: Extract Any ZIP File
-          run: Expand-Archive -Path $env:RUNNER_TEMP/w64devkit.zip -DestinationPath $env:RUNNER_TEMP/w64devkit
+          run: Expand-Archive -Path w64devkit/w64devkit.zip -DestinationPath w64devkit/w64devkit
         - name: List Extracted Files
-          run: Get-ChildItem -Path $env:RUNNER_TEMP/w64devkit/w64devkit
+          run: Get-ChildItem -Path w64devkit/w64devkit/w64devkit
         - name: run
-          run: Start-Process -FilePath $env:RUNNER_TEMP/w64devkit/w64devkit/w64devkit.exe
+          run: Start-Process -FilePath w64devkit/w64devkit/w64devkit/w64devkit.exe
 
 
   release:
