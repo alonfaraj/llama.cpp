@@ -487,7 +487,7 @@ jobs:
             file: 'w64devkit-fortran-1.20.0.zip'
             target: $env:RUNNER_TEMP
         - name: Extract Any ZIP File
-          run: Expand-Archive -Path *.zip -DestinationPath $env:RUNNER_TEMP\w64devkit
+          run: Expand-Archive -Path $env:RUNNER_TEMP\*.zip -DestinationPath $env:RUNNER_TEMP\w64devkit
         - name: List Extracted Files
           run: Get-ChildItem -Path $env:RUNNER_TEMP\w64devkit\w64devkit
         - name: run
