@@ -460,9 +460,8 @@ jobs:
   freeBSD-latest:
     runs-on: macos-12
     strategy:
-      fail-fast: false
       matrix:
-        arg: ['', 'LLAMA_OPENBLAS=1', 'LLAMA_CUBLAS=1']
+        arg: ['', 'LLAMA_OPENBLAS=1']
 
     steps:
     - name: Clone
