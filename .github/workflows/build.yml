@@ -467,6 +467,7 @@ jobs:
       uses: vmactions/freebsd-vm@v0.3.1
       with:
         release: '13.2'
+        copyback: false
         prepare: |
           pkg update
           pkg install -y gmake automake autoconf pkgconf llvm15 clinfo clover opencl clblast openblas
