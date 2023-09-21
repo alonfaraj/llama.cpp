@@ -460,6 +460,7 @@ jobs:
   freeBSD-latest:
     runs-on: macos-12
     strategy:
+      fail-fast: false
       matrix:
         arg: ['', 'LLAMA_OPENBLAS=1', 'LLAMA_CUBLAS=1']
 
@@ -474,7 +475,7 @@ jobs:
         copyback: false
         prepare: |
           pkg update
-          pkg install -y gmake automake autoconf pkgconf llvm15 clinfo clover opencl clblast openblas
+          pkg install -y gmake automake autoconf pkgconf llvm15 clinfo clover opencl openblas
         run: gmake CC=/usr/local/bin/clang15 CXX=/usr/local/bin/clang++15 ${{ matrix.arg }}
 
   release:
